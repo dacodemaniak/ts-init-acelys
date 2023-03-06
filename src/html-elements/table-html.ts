@@ -4,75 +4,53 @@
  * @version 1.0.0
  */
 
+import { Composite } from "./../patterns/composite/composite"
 import { NodeHTML } from "./nodeHTML"
 
 export class TableHTML {
     private listContent: Array<string> = ['Aubert', 'Talut', 'Saulay'] // string[] <=> Array<string>
-
-    private nodes: NodeHTML[] = [
-        {
-            node: 'table',
-            children: [
-                { 
-                    node: 'thead',
-                    children: [
-                        {
-                            node: 'tr',
-                            children: [
-                                {
-                                    node: 'th',
-                                    content: 'Name'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    node: 'tbody',
-                    children: []
-                }
-            ]
-        }
-    ]
+    private table: Composite = new Composite()
 
     public constructor() {
-        const tbodyContent: NodeHTML = this.nodes[0].children
-            .find((obj: NodeHTML) => obj.node === 'tbody')
-
-        for(const name of this.listContent) {
-            tbodyContent.children.push({
-                node: 'tr',
-                children: [
-                    {
-                        node: 'td',
-                        content: name
-                    }
-                ]
-            })
-        }
+        this.compose()
     }
-    public build(nodes: NodeHTML[] = null, parentNode: HTMLElement = null): HTMLElement {
-        let node: HTMLElement
 
-        if (nodes === null) {
-            nodes = this.nodes;
+    private compose(): void {
+        this.table.setComponentType('table')
+
+        const thead: Composite = new Composite()
+        thead.setComponentType('thead')
+
+        const tbody: Composite = new Composite()
+        tbody.setComponentType('tbody')
+
+        const tfoot: Composite = new Composite()
+        tfoot.setComponentType('tfoot')
+
+        // Compose content of tbody
+        for (const name of this.listContent) {
+            const row: Composite = new Composite()
+            row.setComponentType('tr')
+            const td: Composite = new Composite()
+            td.setComponentType('td')
+            td.setContent(name)
+            row.addComponent(td)
+            tbody.addComponent(row)
         }
-        nodes.forEach((nodeEl: NodeHTML) => {
-            // Create the node
-            node = document.createElement(nodeEl.node)
-            if (nodeEl.content) {
-                node.textContent = nodeEl.content
-            }
-            
-            if (parentNode === null) {
-                parentNode = node
-            }
+        this.table.addComponent(tbody)
 
-            if (nodeEl.children && nodeEl.children.length) {
-                parentNode.appendChild(this.build(nodeEl.children, node))
-            }
-        })
+        // Compose thead
+        const row: Composite = new Composite()
+        row.setComponentType('tr')
+        const th: Composite = new Composite()
+        th.setComponentType('th')
+        th.setContent('Name')
+        row.addComponent(th)
+        thead.addComponent(row)
+        this.table.addComponent(thead)
+    }
 
-        return node as HTMLTableElement
+    public build(): HTMLElement {
+        return this.table.build()
     }
 }
