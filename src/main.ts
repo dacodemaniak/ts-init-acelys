@@ -1,3 +1,4 @@
+import { ListHTML } from './html-elements/list-html'
 /**
  * main.ts
  * @author Aélion <jean-luc.aubert@aelion.fr>
@@ -5,20 +6,26 @@
  * 
  * Entry point of our frontend application
  */
-let myName: string
-myName = 'Jean-Luc'
+class Main {
+    constructor() {
+        let myName: string
+        myName = 'Jean-Luc'
 
-const myLastName: string = 'Aubert'
+        /**
+        * Récupère dans le DOM (Document Object Model) le premier Objet (élément HTML)
+        * qui dispose d'un attribut "app"
+        */
+        const app: Element = document.querySelector('[app]')
+        app.innerHTML = myName
 
-const myArray: Array<string> = ['Aubert', 'Casper', 'Tartempion']
-myArray.push('Talut')
-console.table(myArray)
-
-console.log(myName)
+        // New instance of ListHTML
+        const listHTML = new ListHTML()
+        listHTML.build()
+    }
+}
 
 /**
- * Récupère dans le DOM (Document Object Model) le premier Objet (élément HTML)
- * qui dispose d'un attribut "app"
+ * Launch app
  */
-const app: Element = document.querySelector('[app]')
-app.innerHTML = myName
+const main = new Main()
+
