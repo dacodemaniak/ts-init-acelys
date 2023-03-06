@@ -10,5 +10,15 @@ myName = 'Jean-Luc'
 
 const myLastName: string = 'Aubert'
 
+const myArray: Array<string> = ['Aubert', 'Casper', 'Tartempion']
+myArray.push('Talut')
+console.table(myArray)
 
 console.log(myName)
+
+/**
+ * Récupère dans le DOM (Document Object Model) le premier Objet (élément HTML)
+ * qui dispose d'un attribut "app"
+ */
+const app: Element = document.querySelector('[app]')
+app.innerHTML = myName
