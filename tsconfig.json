@@ -1,8 +1,15 @@
 {
     "compilerOptions": {
-        "outDir": "./dist",
-        "target": "esnext",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
-        "module": "commonjs", 
-        "rootDir": "./src"
+         "baseUrl": ".",
+         "paths": { "*": ["types/*"] },
+         "outDir": "./dist/",
+         "noImplicitAny": true,
+         "module": "es6",
+         "moduleResolution": "node",
+         "allowSyntheticDefaultImports": true,
+         "target": "es2015",
+         "allowJs": true,
+         
+         "lib": ["dom", "dom.iterable", "es6", "es2015.promise"]
     }
 }

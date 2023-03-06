@@ -1,21 +1,27 @@
 {
   "name": "hello-ts",
   "version": "1.0.0",
-  "description": "Typescript init",
-  "main": "dist/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/tsc"
-  },
-  "keywords": [
-    "Typescript",
-    "HTML",
-    "CSS",
-    "SCSS"
-  ],
-  "author": "Aélion <jean-luc.aubert@aelion.fr>",
+  "description": "Design Patterns with Typescript",
+  "main": "main.ts",
+  "author": "IDea Factory",
   "license": "ISC",
+  "private": false,
+  "scripts": {
+    "babel": "babel --presets es2015 ./src/main.ts -o ./dist/main.js",
+    "webpack:dev": "webpack --watch --mode development",
+    "webpack:build": "webpack --mode production -p",
+    "app": "webpack --mode production -p && node ./dist/main"
+  },
   "devDependencies": {
-    "typescript": "^4.9.5"
+    "babel-cli": "6.26",
+    "babel-core": "6.26",
+    "babel-loader": "9.1.2",
+    "babel-preset-env": "1.7",
+    "babel-preset-es2015": "6.24",
+    "ts-loader": "9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "5.75",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
   }
 }
