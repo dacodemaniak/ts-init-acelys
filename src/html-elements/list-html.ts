@@ -15,7 +15,7 @@ export class ListHTML {
         this.listType = listType
     }
     
-    public build(): void {
+    public build(): HTMLUListElement {
         // Have to build a ul | ol list with as many li as listContent length
         // <ul>
         //  <li>Aubert</li>
@@ -32,5 +32,6 @@ export class ListHTML {
             line.textContent = name
             list.appendChild(line)
         }
+        return list
     }
 }
