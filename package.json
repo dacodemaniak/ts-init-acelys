@@ -1,0 +1,20 @@
+{
+  "name": "hello-ts",
+  "version": "1.0.0",
+  "description": "Typescript init",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Typescript",
+    "HTML",
+    "CSS",
+    "SCSS"
+  ],
+  "author": "Aélion <jean-luc.aubert@aelion.fr>",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
