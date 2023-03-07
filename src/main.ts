@@ -9,20 +9,23 @@ import { TableHTML } from './html-elements/table-html'
  * Entry point of our frontend application
  */
 class Main {
+    private app: HTMLElement = document.querySelector('[app]')
+
     constructor() {
         let myName: string
+
         myName = 'Jean-Luc'
 
         /**
         * Récupère dans le DOM (Document Object Model) le premier Objet (élément HTML)
         * qui dispose d'un attribut "app"
         */
-        const app: Element = document.querySelector('[app]')
-        app.innerHTML = myName
+        
+        this.app.innerHTML = myName
 
         // New instance of ListHTML
         const listHTML = new ListHTML()
-        app.appendChild(listHTML.build())
+        this.app.appendChild(listHTML.build())
 
         // Instance of HtmlTable
         this.getDatas()
@@ -35,7 +38,7 @@ class Main {
 
         const tableEl: HTMLTable = new HTMLTable()
         tableEl.setTableContent(names)
-        document.querySelector('[app]').appendChild(tableEl.build()) 
+        this.app.appendChild(tableEl.build()) 
     }
 
     private async studentList(): Promise<any> {
