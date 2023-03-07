@@ -7,25 +7,44 @@
 import { Composite } from "./../patterns/composite/composite"
 
 export class TableHTML {
-    private listContent: Array<string> = ['Aubert', 'Talut', 'Saulay'] // string[] <=> Array<string>
+    private listContent: Array<any> = [] // string[] <=> Array<string>
     private table: Composite = new Composite('table')
     private thead: Composite = new Composite('thead')
     private tbody: Composite = new Composite('tbody')
     private tfoot: Composite = new Composite('tfoot')
+    private cellDefs: Set<string> = new Set()
+    
 
-    public constructor() {
-        this.compose()
+    public constructor() {}
+
+    public addContent(content: any): TableHTML {
+        this.listContent.push(content)
+        this.cellDefs.add(content.cellDef)
+        return this
     }
 
-    private compose(): void {
+    public compose(): void {
 
         // Compose content of tbody
-        for (const name of this.listContent) {
+        for (const content of this.listContent) {
+            // Remove cellDef from content
+            const cleanContent: any = {}
+            for (const property in content) {
+                if (property !== 'cellDef') {
+                    cleanContent[property] = content[property]
+                }
+            }
+
+            
             const row: Composite = new Composite('tr')
             
-            const td: Composite = new Composite('td')
-            td.setContent(name)
-            row.addComponent(td)
+            // Loop over clean properties to add table divider
+            for (const property in cleanContent) {
+                const td: Composite = new Composite('td')
+                td.setContent(cleanContent[property])
+                row.addComponent(td)
+            }
+
             
             this.tbody.addComponent(row)
         }
@@ -34,10 +53,12 @@ export class TableHTML {
         // Compose thead
         const row: Composite = new Composite('tr')
 
-        const th: Composite = new Composite('th')
-
-        th.setContent('Name')
-        row.addComponent(th)
+        this.cellDefs.forEach((cd: string) => {
+            const th: Composite = new Composite('th')
+            th.setContent(cd)
+            row.addComponent(th)
+        })
+        
         this.thead.addComponent(row)
         this.table.addComponent(this.thead)
     }

@@ -24,6 +24,22 @@ class Main {
         app.appendChild(listHTML.build())
 
         const tableHTML = new TableHTML()
+        tableHTML
+            .addContent([
+                {
+                    name: 'Aubert',
+                    cellDef: 'Name'
+                },
+                {
+                    name: 'Talut',
+                    cellDef: 'Name'
+                },
+                {
+                    name: 'Saulay',
+                    cellDef: 'Name'
+                }
+            ])
+        tableHTML.compose()
         app.appendChild(tableHTML.build())
     }
 }
