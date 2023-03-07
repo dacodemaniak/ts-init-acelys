@@ -1,3 +1,4 @@
+import { HTMLTable } from './html-elements/html-table'
 import { ListHTML } from './html-elements/list-html'
 import { TableHTML } from './html-elements/table-html'
 /**
@@ -23,24 +24,14 @@ class Main {
         const listHTML = new ListHTML()
         app.appendChild(listHTML.build())
 
-        const tableHTML = new TableHTML()
-        tableHTML
-            .addContent([
-                {
-                    name: 'Aubert',
-                    cellDef: 'Name'
-                },
-                {
-                    name: 'Talut',
-                    cellDef: 'Name'
-                },
-                {
-                    name: 'Saulay',
-                    cellDef: 'Name'
-                }
-            ])
-        tableHTML.compose()
-        app.appendChild(tableHTML.build())
+        // Instance of HtmlTable
+        const tableEl: HTMLTable = new HTMLTable()
+        tableEl.setTableContent([
+            'Aubert',
+            'Talut',
+            'Saulay'
+        ])
+        app.appendChild(tableEl.build())
     }
 }
 
