@@ -25,19 +25,20 @@ class Main {
         app.appendChild(listHTML.build())
 
         // Instance of HtmlTable
-        this.studentList().then(
-            (datas: any) => {
-                const names: Array<string> = datas
-                    .map((data: any) => data.lastName)
-
-                const tableEl: HTMLTable = new HTMLTable()
-                tableEl.setTableContent(names)
-                app.appendChild(tableEl.build())               
-            }
-        )
+        this.getDatas()
     }
 
-    private studentList(): Promise<any> {
+    private async getDatas() {
+        const datas: any[] = await this.studentList()
+        const names: Array<string> = datas
+            .map((data: any) => data.lastName)
+
+        const tableEl: HTMLTable = new HTMLTable()
+        tableEl.setTableContent(names)
+        document.querySelector('[app]').appendChild(tableEl.build()) 
+    }
+
+    private async studentList(): Promise<any> {
         const endPoint: string = 'http://127.0.0.1:5000/api/v1/students'
         
         return fetch(
