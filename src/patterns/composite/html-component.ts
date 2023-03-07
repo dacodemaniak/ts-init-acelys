@@ -3,6 +3,10 @@ export abstract class HTMLComponent {
     protected componentType: string
     protected content?: string;
 
+    protected constructor(componentType: string) {
+        this.componentType = componentType
+    }
+    
     public setParent(parent: HTMLComponent | null): void {
         this.parent = parent
     }

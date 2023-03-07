@@ -3,6 +3,10 @@ import { HTMLComponent } from "./html-component";
 export class Composite extends HTMLComponent {
     private children: Array<HTMLComponent> = []
 
+    public constructor(componentType: string) {
+        super(componentType)
+    }
+    
     public addComponent(component: HTMLComponent): void {
         this.children.push(component)
         component.setParent(this)

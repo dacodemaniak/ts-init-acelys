@@ -5,49 +5,41 @@
  */
 
 import { Composite } from "./../patterns/composite/composite"
-import { NodeHTML } from "./nodeHTML"
 
 export class TableHTML {
     private listContent: Array<string> = ['Aubert', 'Talut', 'Saulay'] // string[] <=> Array<string>
-    private table: Composite = new Composite()
+    private table: Composite = new Composite('table')
+    private thead: Composite = new Composite('thead')
+    private tbody: Composite = new Composite('tbody')
+    private tfoot: Composite = new Composite('tfoot')
 
     public constructor() {
         this.compose()
     }
 
     private compose(): void {
-        this.table.setComponentType('table')
-
-        const thead: Composite = new Composite()
-        thead.setComponentType('thead')
-
-        const tbody: Composite = new Composite()
-        tbody.setComponentType('tbody')
-
-        const tfoot: Composite = new Composite()
-        tfoot.setComponentType('tfoot')
 
         // Compose content of tbody
         for (const name of this.listContent) {
-            const row: Composite = new Composite()
-            row.setComponentType('tr')
-            const td: Composite = new Composite()
-            td.setComponentType('td')
+            const row: Composite = new Composite('tr')
+            
+            const td: Composite = new Composite('td')
             td.setContent(name)
             row.addComponent(td)
-            tbody.addComponent(row)
+            
+            this.tbody.addComponent(row)
         }
-        this.table.addComponent(tbody)
+        this.table.addComponent(this.tbody)
 
         // Compose thead
-        const row: Composite = new Composite()
-        row.setComponentType('tr')
-        const th: Composite = new Composite()
-        th.setComponentType('th')
+        const row: Composite = new Composite('tr')
+
+        const th: Composite = new Composite('th')
+
         th.setContent('Name')
         row.addComponent(th)
-        thead.addComponent(row)
-        this.table.addComponent(thead)
+        this.thead.addComponent(row)
+        this.table.addComponent(this.thead)
     }
 
     public build(): HTMLElement {
