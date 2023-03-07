@@ -1,6 +1,8 @@
 import { HTMLTable } from './html-elements/html-table'
 import { ListHTML } from './html-elements/list-html'
-import { TableHTML } from './html-elements/table-html'
+
+import './scss/main.scss';
+
 /**
  * main.ts
  * @author Aélion <jean-luc.aubert@aelion.fr>
