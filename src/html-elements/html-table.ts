@@ -18,6 +18,7 @@ export class HTMLTable {
             const row: HTMLTableRowElement = document.createElement('tr')
             // Second create a td (table divider)
             const divider: HTMLTableCellElement = document.createElement('td')
+
             // Put content in divider
             divider.textContent = content
             // Add divider to row

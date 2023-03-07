@@ -25,13 +25,26 @@ class Main {
         app.appendChild(listHTML.build())
 
         // Instance of HtmlTable
-        const tableEl: HTMLTable = new HTMLTable()
-        tableEl.setTableContent([
-            'Aubert',
-            'Talut',
-            'Saulay'
-        ])
-        app.appendChild(tableEl.build())
+        this.studentList().then(
+            (datas: any) => {
+                const names: Array<string> = datas
+                    .map((data: any) => data.lastName)
+
+                const tableEl: HTMLTable = new HTMLTable()
+                tableEl.setTableContent(names)
+                app.appendChild(tableEl.build())               
+            }
+        )
+    }
+
+    private studentList(): Promise<any> {
+        const endPoint: string = 'http://127.0.0.1:5000/api/v1/students'
+        
+        return fetch(
+            endPoint
+        ).then((response: Response) => {
+            return response.json()
+        })
     }
 }
 
