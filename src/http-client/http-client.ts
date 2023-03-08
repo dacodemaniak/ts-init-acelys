@@ -12,7 +12,12 @@ export class HttpClient {
 
         const response: any = await this.send()
         
-        return response.json()
+        if (response.ok) {
+            return response.json()
+        } else {
+            throw new Error('Student already exists')
+        }
+        
     }
 
     private async send(): Promise<any> {

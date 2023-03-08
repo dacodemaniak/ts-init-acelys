@@ -4,6 +4,7 @@ import { TableHTML } from './html-elements/table-html';
 import { HttpClient } from './http-client/http-client';
 
 import './scss/main.scss';
+import { Toast } from './ui/toast';
 
 /**
  * main.ts
@@ -100,10 +101,17 @@ const formFields: Map<string, any> = new Map<string, any>([
 
     const httpClient: HttpClient = new HttpClient()
 
-    const student: any = await httpClient.post(
-        'http://127.0.0.1:5000/api/v1/students',
-        form
-    )
+    try {
+        const student: any = await httpClient.post(
+            'http://127.0.0.1:5000/api/v1/students',
+            form
+        )
+        const toast: Toast = new Toast()
+        toast.open(student.email)
+        console.log(`Receive : ${JSON.stringify(student)}`)
+    } catch(error: any) {
+        const toast: Toast = new Toast()
+        toast.open(`Something went wrong during operation`)
+    }
 
-    console.log(`Receive : ${JSON.stringify(student)}`)
 }
