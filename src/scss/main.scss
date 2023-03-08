@@ -2,3 +2,17 @@ body {
     margin: 0;
     padding: 0;
 }
+
+form {
+    div {
+        &.form-field {
+            margin-bottom: .5em;
+
+            input {
+                border-left: none;
+                border-right: none;
+                border-top: none;
+            }
+        }
+    }
+}
