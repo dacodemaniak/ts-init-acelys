@@ -18,11 +18,16 @@ export class TableHTML {
     public constructor() {}
 
     public addContent(content: any): TableHTML {
-        this.listContent.push(content)
-        this.cellDefs.add(content.cellDef)
+        this.listContent = content
+        //this.cellDefs.add(content.cellDef)
         return this
     }
 
+    public setCellDefs(cellDefs: Array<string>): void {
+        cellDefs.forEach((cd: string) => {
+            this.cellDefs.add(cd)
+        })
+    }
     public compose(): void {
 
         // Compose content of tbody
