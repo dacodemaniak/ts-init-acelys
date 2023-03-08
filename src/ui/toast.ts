@@ -25,6 +25,11 @@ export class Toast {
     }
 
     public open(captionText: string, captionAction: string = null): void {
+        const outerToast: HTMLDivElement = document.createElement('div')
+        outerToast.style.position = 'absolute'
+        outerToast.style.backgroundColor = 'transparent'
+        outerToast.style.width = '100%'
+
         const toast: HTMLDivElement = document.createElement('div')
         toast.style.width = '25em'
         toast.style.height = '3em'
@@ -33,18 +38,18 @@ export class Toast {
         toast.style.color = 'rgb(255, 255, 255)'
         toast.style.backgroundColor = 'rgba(200, 128, 128, .8)'
 
-        toast.style.position = 'absolute'
         // Determine left position
-        const leftPosition: string = (window.innerWidth - 200) + 'px'
-        console.log(`Position left: ${leftPosition} from ${window.innerWidth}`)
-        toast.style.left = leftPosition
+        //const leftPosition: string = (window.innerWidth - 200) + 'px'
+        //console.log(`Position left: ${leftPosition} from ${window.innerWidth}`)
+        //toast.style.left = leftPosition
+        toast.style.margin = '0 auto';
 
         if (this.position === 'top') {
-            toast.style.top = '1em'
+            outerToast.style.top = '3em'
         }
 
         if (this.position === 'bottom') {
-            toast.style.bottom = '1em'
+            outerToast.style.bottom = '3em'
         }
 
         const captionFlex: HTMLSpanElement = document.createElement('span')
@@ -52,10 +57,12 @@ export class Toast {
 
         toast.appendChild(captionFlex)
 
-        document.querySelector('body').appendChild(toast)
+        outerToast.appendChild(toast)
+
+        document.querySelector('body').appendChild(outerToast)
 
         setTimeout(
-            () => document.querySelector('body').removeChild(toast),
+            () => document.querySelector('body').removeChild(outerToast),
             this.duration * 1000
         )
     }
