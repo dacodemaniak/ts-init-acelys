@@ -24,7 +24,8 @@ class Main {
         const names: Array<any> = datas
             .map((data: any) => {
                 return {
-                    name: data.lastName
+                    name: data.lastName,
+                    firstname: data.firstName
                 }
             })
 
