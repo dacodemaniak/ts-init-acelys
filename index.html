@@ -9,6 +9,19 @@
 </head>
 <body>
     <div app></div>
+
+    <!-- Student form -->
+    <form id="student-form">
+        <div class="form-field">
+            <input type="text" name="lastName" placeholder="Student name..." onkeyup="keyupHandler(this)">
+        </div>
+        <div class="action-bar">
+            <button disabled>
+                Save
+            </button>
+        </div>
+    </form>
+
     <script src="./dist/main.js" type="module"></script>
 </body>
 </html>

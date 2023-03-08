@@ -10,7 +10,8 @@
     "babel": "babel --presets es2015 ./src/main.ts -o ./dist/main.js",
     "webpack:dev": "webpack --watch --mode development",
     "webpack:build": "webpack --mode production -p",
-    "app": "webpack --mode production -p && node ./dist/main"
+    "app": "webpack --mode production -p && node ./dist/main",
+    "serve": "http-server -c-1 -o"
   },
   "devDependencies": {
     "babel-cli": "6.26",

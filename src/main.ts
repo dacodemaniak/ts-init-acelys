@@ -11,12 +11,12 @@ import './scss/main.scss';
  * 
  * Entry point of our frontend application
  */
-class Main {
+export class Main {
     private app: HTMLElement = document.querySelector('[app]')
 
     constructor() {
         // Instance of HtmlTable
-        this.getDatas()
+        //this.getDatas()
     }
 
     private async getDatas() {
@@ -49,5 +49,28 @@ class Main {
 /**
  * Launch app
  */
-const main = new Main()
+const main = new Main();
+
+/**
+ * Event handling with JS
+ */
+(window as any).keyupHandler = (el: any) => {
+    console.log(el instanceof HTMLInputElement ? 'ok' : 'ko')
+
+
+    // Get value user entered
+    const field: HTMLInputElement = document.querySelector('input[name="lastName"]')
+    if (field) {
+        // How to get the value for that field
+        const value: string = field.value;
+
+        // Ensure that not only spaces
+        if (value.trim().length) {
+            // Remove disabled attribute
+            document.querySelector('form button').removeAttribute('disabled')
+            return
+        }
+    }
+    document.querySelector('form button').setAttribute('disabled', 'disabled')
+}
 

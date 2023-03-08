@@ -23,6 +23,11 @@ export class TableHTML {
         return this
     }
 
+    public setCellDefs(cellDefs: Array<string>): void {
+        cellDefs.forEach((cd: string) => {
+            this.cellDefs.add(cd)
+        })
+    }
     public compose(): void {
 
         // Compose content of tbody
