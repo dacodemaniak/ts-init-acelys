@@ -15,8 +15,6 @@ class Main {
     private app: HTMLElement = document.querySelector('[app]')
 
     constructor() {
-
-
         // Instance of HtmlTable
         this.getDatas()
     }
