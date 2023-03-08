@@ -1,6 +1,7 @@
 import { HTMLTable } from './html-elements/html-table'
 import { ListHTML } from './html-elements/list-html'
 import { TableHTML } from './html-elements/table-html';
+import { HttpClient } from './http-client/http-client';
 
 import './scss/main.scss';
 
@@ -81,3 +82,28 @@ const formFields: Map<string, any> = new Map<string, any>([
     }
 }
 
+(window as any).onSubmit = async (event: any) => {
+    event.preventDefault()
+
+    let form: any = {}
+    formFields.forEach((value: string, key: string) => {
+        const field: HTMLInputElement = document.querySelector('input[name="' + key + '"]')
+        form[key] = field.value
+    })
+    const firstNameField: HTMLInputElement = document.querySelector('input[name="firstName"]')
+    const phoneNumberField: HTMLInputElement = document.querySelector('input[name="phoneNumber"]')
+    
+    form.firstName = firstNameField.value
+    form.phoneNumber = phoneNumberField.value
+
+    console.log(`Form was : ${JSON.stringify(form)}`)
+
+    const httpClient: HttpClient = new HttpClient()
+
+    const student: any = await httpClient.post(
+        'http://127.0.0.1:5000/api/v1/students',
+        form
+    )
+
+    console.log(`Receive : ${JSON.stringify(student)}`)
+}
