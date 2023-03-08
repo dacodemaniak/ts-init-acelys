@@ -1,5 +1,6 @@
 import { HTMLTable } from './html-elements/html-table'
 import { ListHTML } from './html-elements/list-html'
+import { TableHTML } from './html-elements/table-html';
 
 import './scss/main.scss';
 
@@ -14,20 +15,7 @@ class Main {
     private app: HTMLElement = document.querySelector('[app]')
 
     constructor() {
-        let myName: string
 
-        myName = 'Jean-Luc'
-
-        /**
-        * Récupère dans le DOM (Document Object Model) le premier Objet (élément HTML)
-        * qui dispose d'un attribut "app"
-        */
-        
-        this.app.innerHTML = myName
-
-        // New instance of ListHTML
-        const listHTML = new ListHTML()
-        this.app.appendChild(listHTML.build())
 
         // Instance of HtmlTable
         this.getDatas()
@@ -35,11 +23,16 @@ class Main {
 
     private async getDatas() {
         const datas: any[] = await this.studentList()
-        const names: Array<string> = datas
-            .map((data: any) => data.lastName)
+        const names: Array<any> = datas
+            .map((data: any) => {
+                return {
+                    name: data.lastName
+                }
+            })
 
-        const tableEl: HTMLTable = new HTMLTable()
-        tableEl.setTableContent(names)
+        const tableEl: TableHTML = new TableHTML()
+        tableEl.addContent(names)
+        tableEl.compose()
         this.app.appendChild(tableEl.build()) 
     }
 
