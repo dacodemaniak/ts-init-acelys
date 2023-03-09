@@ -52,6 +52,9 @@ export class StudentsController {
 
         pagerSpanTitle.textContent = `Pages : ${start} of ${pages}`
 
+        // First next button wrapper
+        const firstPreviousDiv: HTMLDivElement = document.createElement('div')
+        firstPreviousDiv.classList.add('start')
         // First page
         const firstPageButton: HTMLButtonElement = document.createElement('button')
         firstPageButton.type = 'button'
@@ -59,7 +62,8 @@ export class StudentsController {
             firstPageButton.setAttribute('disabled', 'disabled')
         }
         firstPageButton.textContent = '<<'
-        pager.appendChild(firstPageButton)
+        firstPageButton.classList.add('btn')
+        firstPreviousDiv.appendChild(firstPageButton)
 
         // Previous page
         const previousPageButton: HTMLButtonElement = document.createElement('button')
@@ -68,10 +72,15 @@ export class StudentsController {
             previousPageButton.setAttribute('disabled', 'disabled')
         }
         previousPageButton.textContent = '<'
-        pager.appendChild(previousPageButton)
+        previousPageButton.classList.add('btn')
+        firstPreviousDiv.appendChild(previousPageButton)
+
+        pager.appendChild(firstPreviousDiv)
 
         pager.appendChild(pagerSpanTitle)
 
+        const nextLastDiv: HTMLDivElement = document.createElement('div')
+        nextLastDiv.classList.add('end')
         // Next page
         const nextPageButton: HTMLButtonElement = document.createElement('button')
         nextPageButton.type = 'button'
@@ -79,7 +88,8 @@ export class StudentsController {
             nextPageButton.setAttribute('disabled', 'disabled')
         }
         nextPageButton.textContent = '>'
-        pager.appendChild(nextPageButton)
+        nextPageButton.classList.add('btn')
+        nextLastDiv.appendChild(nextPageButton)
 
         // Last page
         const lastPageButton: HTMLButtonElement = document.createElement('button')
@@ -88,8 +98,9 @@ export class StudentsController {
             nextPageButton.setAttribute('disabled', 'disabled')
         }
         lastPageButton.textContent = '>>'
-        pager.appendChild(lastPageButton)
-        
+        lastPageButton.classList.add('btn')
+        nextLastDiv.appendChild(lastPageButton)
+        pager.appendChild(nextLastDiv)
 
         this.app.appendChild(pager)
 

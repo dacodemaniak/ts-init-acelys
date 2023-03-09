@@ -1,9 +1,37 @@
 div {
     .pager {
         display: flex;
+        width: 100%;
     }
 
-    span, button {
+    span {
         display: flex;
+        flex: 5;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div {
+        &.start {
+            flex: 1;
+            justify-content: left;
+            align-items: start;
+        }
+
+        &.end {
+            flex: 1;
+            justify-content: right;
+            align-items: end;
+        }
+    }
+    button {
+        &.btn {
+            border-radius: .25em;
+            height: 2em;
+            width: 3em;
+            line-height: 1em;
+            vertical-align: middle;
+            padding: .5em;
+        }
     }
 }
