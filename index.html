@@ -10,39 +10,41 @@
 <body>
     <div app></div>
 
-    <!-- Student form -->
-    <form id="student-form" onsubmit="onSubmit(event)">
-        <div class="form-field">
-            <input type="text" name="lastName" placeholder="Student name..." onkeyup="keyupHandler(this)">
-        </div>
+    <template id="student-form">
+        <!-- Student form -->
+        <form id="student-form" onsubmit="onSubmit(event)">
+            <div class="form-field">
+                <input type="text" name="lastName" placeholder="Student name..." onkeyup="keyupHandler(this)">
+            </div>
 
-        
-        <div class="form-field">
-            <input type="text" name="firstName" placeholder="Student first name..." onkeyup="keyupHandler(this)">
-        </div>
-        
-        <div class="form-field">
-            <input type="email" name="email" placeholder="Student email..." onkeyup="keyupHandler(this)" autocomplete="new-password">
-        </div>
+            
+            <div class="form-field">
+                <input type="text" name="firstName" placeholder="Student first name..." onkeyup="keyupHandler(this)">
+            </div>
+            
+            <div class="form-field">
+                <input type="email" name="email" placeholder="Student email..." onkeyup="keyupHandler(this)" autocomplete="new-password">
+            </div>
 
-        <div class="form-field">
-            <input type="text" name="phoneNumber" placeholder="Student phone number..." onkeyup="keyupHandler(this)">
-        </div>
+            <div class="form-field">
+                <input type="text" name="phoneNumber" placeholder="Student phone number..." onkeyup="keyupHandler(this)">
+            </div>
 
-        <div class="form-field">
-            <input type="text" name="login" placeholder="Student login..." onkeyup="keyupHandler(this)">
-        </div>
+            <div class="form-field">
+                <input type="text" name="login" placeholder="Student login..." onkeyup="keyupHandler(this)">
+            </div>
 
-        <div class="form-field">
-            <input type="password" name="password" placeholder="Student password..." onkeyup="keyupHandler(this)" autocomplete="absurd-complete">
-        </div>
+            <div class="form-field">
+                <input type="password" name="password" placeholder="Student password..." onkeyup="keyupHandler(this)" autocomplete="absurd-complete">
+            </div>
 
-        <div class="action-bar">
-            <button disabled>
-                Save
-            </button>
-        </div>
-    </form>
+            <div class="action-bar">
+                <button disabled>
+                    Save
+                </button>
+            </div>
+        </form>
+    </template>
     <script src="./dist/main.js" type="module"></script>
 </body>
 </html>

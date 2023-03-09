@@ -1,7 +1,9 @@
+import { StudentsController } from './controllers/studentsController';
 import { HTMLTable } from './html-elements/html-table'
 import { ListHTML } from './html-elements/list-html'
 import { TableHTML } from './html-elements/table-html';
 import { HttpClient } from './http-client/http-client';
+import { onSubmit, ReactiveForm } from './reactive-form/reactive-form';
 
 import './scss/main.scss';
 import { Toast } from './ui/toast';
@@ -18,33 +20,9 @@ export class Main {
 
     constructor() {
         // Instance of HtmlTable
-        //this.getDatas()
-    }
+        const studentController: StudentsController = new StudentsController(this.app)
+        studentController.displayStudentTable()
 
-    private async getDatas() {
-        const datas: any[] = await this.studentList()
-        const names: Array<any> = datas
-            .map((data: any) => {
-                return {
-                    name: data.lastName,
-                    firstname: data.firstName
-                }
-            })
-
-        const tableEl: TableHTML = new TableHTML()
-        tableEl.addContent(names)
-        tableEl.compose()
-        this.app.appendChild(tableEl.build()) 
-    }
-
-    private async studentList(): Promise<any> {
-        const endPoint: string = 'http://127.0.0.1:5000/api/v1/students'
-        
-        return fetch(
-            endPoint
-        ).then((response: Response) => {
-            return response.json()
-        })
     }
 }
 
@@ -83,6 +61,9 @@ const formFields: Map<string, any> = new Map<string, any>([
     }
 }
 
+(window as any).onSubmit = (event: any) => onSubmit(event);
+
+/**
 (window as any).onSubmit = async (event: any) => {
     event.preventDefault()
 
@@ -115,3 +96,4 @@ const formFields: Map<string, any> = new Map<string, any>([
     }
 
 }
+*/

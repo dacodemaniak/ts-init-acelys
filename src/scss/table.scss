@@ -1,0 +1,26 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: none;
+
+    thead {
+        height: 5em;
+        border-bottom: solid 1px #000;
+
+        th {
+            text-align: left;
+        }
+    }
+
+    tbody {
+        tr {
+            height: 2em;
+         td {
+             border-bottom: solid 1px rgb(128, 128, 128);
+         }
+        }
+     }
+}
+
+
+
