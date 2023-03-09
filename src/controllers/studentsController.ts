@@ -22,6 +22,10 @@ export class StudentsController {
         tableEl.addContent(students)
         tableEl.compose()
         this.app.appendChild(tableEl.build())
+
+        // Place event handlers
+        StudentService.selectAllHandler(document.getElementById('check-uncheck-all'))
+        StudentService.studentCheckHandler(document.querySelectorAll('.student-check'))
     }
 
     private getStudents(): Promise<any> {

@@ -42,7 +42,7 @@ export class TableHTML {
             
             const row: Composite = new Composite('tr')
             // Add checkbox at first column
-            const checkbox: Composite = new Composite('input', {type: 'checkbox', id: `student_${cleanContent.id}`})
+            const checkbox: Composite = new Composite('input', {type: 'checkbox', id: `student_${cleanContent.id}`, class: 'student-check'})
             const td: Composite = new Composite('td')
             td.addComponent(checkbox)
             row.addComponent(td)

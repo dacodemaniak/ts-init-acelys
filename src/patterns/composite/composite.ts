@@ -17,7 +17,12 @@ export class Composite extends HTMLComponent {
         if (this.args && this.args.length > 0) {
             const attributes: any = this.args[0][0]
             for (const attribute in attributes) {
-                el.setAttribute(attribute, attributes[attribute])
+                if (attribute === 'class') {
+                    el.classList.add(attributes[attribute])
+                } else {
+                    el.setAttribute(attribute, attributes[attribute])
+                }
+                
             }
         }
 
