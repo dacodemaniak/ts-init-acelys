@@ -1,10 +1,11 @@
 export abstract class HTMLComponent {
     protected parent!: HTMLComponent | null
     protected componentType: string
-    protected content?: string;
-
-    protected constructor(componentType: string) {
+    protected content?: string
+    protected args?: any[]
+    protected constructor(componentType: string, ...args: any[]) {
         this.componentType = componentType
+        this.args = args
     }
     
     public setParent(parent: HTMLComponent | null): void {

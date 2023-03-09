@@ -3,8 +3,8 @@ import { HTMLComponent } from "./html-component";
 export class Composite extends HTMLComponent {
     private children: Array<HTMLComponent> = []
 
-    public constructor(componentType: string) {
-        super(componentType)
+    public constructor(componentType: string, ...args: any[]) {
+        super(componentType, args)
     }
     
     public addComponent(component: HTMLComponent): void {
@@ -14,7 +14,19 @@ export class Composite extends HTMLComponent {
 
     public build(): HTMLElement {
         const el: HTMLElement = document.createElement(this.componentType)
-        if (this.content && this.content.trim().length) {
+        if (this.args && this.args.length > 0) {
+            const attributes: any = this.args[0][0]
+            for (const attribute in attributes) {
+                if (attribute === 'class') {
+                    el.classList.add(attributes[attribute])
+                } else {
+                    el.setAttribute(attribute, attributes[attribute])
+                }
+                
+            }
+        }
+
+        if (this.content && this.content.toString().trim().length) {
             el.textContent = this.content
         }
         if (this.children.length) {

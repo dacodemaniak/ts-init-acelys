@@ -19,7 +19,6 @@ export class TableHTML {
 
     public addContent(content: any): TableHTML {
         this.listContent = content
-        //this.cellDefs.add(content.cellDef)
         return this
     }
 
@@ -42,7 +41,11 @@ export class TableHTML {
 
             
             const row: Composite = new Composite('tr')
-            
+            // Add checkbox at first column
+            const checkbox: Composite = new Composite('input', {type: 'checkbox', id: `student_${cleanContent.id}`, class: 'student-check'})
+            const td: Composite = new Composite('td')
+            td.addComponent(checkbox)
+            row.addComponent(td)
             // Loop over clean properties to add table divider
             for (const property in cleanContent) {
                 const td: Composite = new Composite('td')
@@ -57,6 +60,11 @@ export class TableHTML {
 
         // Compose thead
         const row: Composite = new Composite('tr')
+        // Add checkbox at first column
+        const checkbox: Composite = new Composite('input', {type: 'checkbox', id: `check-uncheck-all`})
+        const th: Composite = new Composite('th')
+        th.addComponent(checkbox)
+        row.addComponent(th)
 
         this.cellDefs.forEach((cd: string) => {
             const th: Composite = new Composite('th')

@@ -4,6 +4,20 @@ export class HttpClient {
     private contentType: string
     private body: string
 
+    public async get(uri: string): Promise<any> {
+        this.method = 'get'
+        this.uri = uri
+        this.contentType = 'application/json'
+
+        const response: any = await this.send()
+        
+        if (response.ok) {
+            return response.json()
+        } else {
+            throw new Error('Something went wrong while students retrieving')
+        }
+    }
+
     public async post(uri: string, body: any): Promise<any> {
         this.method = 'post'
         this.uri = uri

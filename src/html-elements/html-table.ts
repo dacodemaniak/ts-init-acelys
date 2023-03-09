@@ -1,3 +1,4 @@
+import './../scss/table.scss'
 export class HTMLTable {
     private tableEl: HTMLTableElement = document.createElement('table')
 
