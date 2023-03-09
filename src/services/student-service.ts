@@ -3,13 +3,21 @@ import { HttpClient } from './../http-client/http-client'
 export class StudentService {
     private httpClient: HttpClient = new HttpClient()
     private readonly endPoint: string = 'http://127.0.0.1:5000/api/v1/students'
+    private _students: Array<any> = []
+
+    public get students(): Array<any> {
+        return this._students
+    }
 
     public async findAll(): Promise<unknown[]> {
-        return this.httpClient.get(this.endPoint)
+        this._students = await this.httpClient.get(this.endPoint)
+        return new Promise((resolve) => resolve(this._students))
     }
 
     public async findSimpleStudents(): Promise<unknown[]> {
-        return this.httpClient.get(this.endPoint + '/simple')
+
+        this._students = await this.httpClient.get(this.endPoint + '/simple')
+        return new Promise((resolve) => resolve(this._students))
     }
 
     public findOne(id: number): any {}
