@@ -8,10 +8,12 @@ import { Composite } from "./../patterns/composite/composite"
 
 export class TableHTML {
     private listContent: Array<any> = [] // string[] <=> Array<string>
+
     private table: Composite = new Composite('table')
     private thead: Composite = new Composite('thead')
     private tbody: Composite = new Composite('tbody')
     private tfoot: Composite = new Composite('tfoot')
+    
     private cellDefs: Set<string> = new Set()
     
 

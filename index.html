@@ -10,6 +10,38 @@
 <body>
     <div app></div>
 
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" id="check-uncheck-all">
+                </th>
+                <th>Id</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+    </table>
+    <div class="pager">
+        <div class="first-previous">
+            <button class="btn btn-pager" id="first-page" disabled>&lt;&lt;</button>
+            <button class="btn btn-pager" id="previous-page" disabled>&lt;</button>
+        </div>
+
+        <div class="status">
+            Page : <span id="current-page">1</span> of <span id="total-page"></span>
+        </div>
+
+        <div class="next-last">
+            <button class="btn btn-pager" type="button" id="next-page">&gt;</button>
+            <button class="btn btn-pager" id="last-page">&gt;&gt;</button>
+        </div>
+    </div>
     <template id="student-form">
         <!-- Student form -->
         <form id="student-form" onsubmit="onSubmit(event)">
@@ -44,6 +76,18 @@
                 </button>
             </div>
         </form>
+    </template>
+
+    <template id="student-tr">
+        <tr>
+            <td>
+                <input type="checkbox" class="student-checkbox">
+            </td>
+            <td data-rel="id"></td>
+            <td data-rel="lastName"></td>
+            <td data-rel="firstName"></td>
+            <td data-rel="email"></td>
+        </tr>
     </template>
     <script src="./dist/main.js" type="module"></script>
 </body>

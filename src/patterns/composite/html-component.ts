@@ -3,6 +3,7 @@ export abstract class HTMLComponent {
     protected componentType: string
     protected content?: string
     protected args?: any[]
+    
     protected constructor(componentType: string, ...args: any[]) {
         this.componentType = componentType
         this.args = args
